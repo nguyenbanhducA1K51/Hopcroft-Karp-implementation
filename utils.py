@@ -3,7 +3,8 @@ import os
 import networkx as nx
 import numpy as np
 from networkx.algorithms import bipartite
-
+import random
+print (random.choices([0,1],weights=(5,10)))
 def printGraph(G,A):
     save_path=os.path.join(os.path.dirname(__file__),"visualize","graph.png")
     B=nx.Graph()
@@ -51,7 +52,7 @@ def printGraphWithMatching(G,A,M):
     plt.clf()
 
 
-def genGraph(mode="fix",size=8):
+def genGraph(mode="fix",size=8,p=0.2):
     A=size//2
     if mode=="fix":
         pairs=[(0, 6), (0, 7), (1, 4), (1, 5), (2, 4), (2, 5), (2, 7), (3, 4), (3, 5), (3, 6)]
@@ -68,7 +69,7 @@ def genGraph(mode="fix",size=8):
             G[r,r]=1
         for i in range (A):
             for j in range(A,len(G)):
-                    G[i,j]=np.random.randint(0,2)     
+                    G[i,j]=random.choices([0,1],weights=(1-p,p))[0]
         return G
     else:
         print ("invalid mode")

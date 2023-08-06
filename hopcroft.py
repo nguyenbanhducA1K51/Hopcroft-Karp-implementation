@@ -18,17 +18,13 @@ def hopcroft(G,A):
         has_aug_path=False
         l=math.inf
         L=bfs(G,A,M)
-        print(L)
         for u in L.keys():
             if int(u)>=A and M[str(u)]==-1 and  L[u]!=math.inf:
                 has_aug_path=True
                 l=min(l,L[u]) # shortest augmenting path to free vertex in B
-        print(l)
         for u in range(A):
             if visit[str(u)]==0 and M[str(u)]==-1:
                 aug(u,G,A,L,M,l,visit)
-        # has_aug_path=False
-
     return M
 def bfs(G,A,M=None):
     q = deque()
@@ -58,11 +54,11 @@ def bfs(G,A,M=None):
                 q.append ( M[str(v)])
     return L
 def aug (u,G,A,L,M,l,visit):
-    # print("u",u,"L",L,"visit",visit)
+
     visit[str(u)]=1
     for v in range(A,len(G)):
         if G[u,v]==1:
-            print ("u,v",u,v)
+
             if M[str(v)]==-1:
                 visit[str(v)]=1
                 M[str(v)]=u 
@@ -80,7 +76,7 @@ def aug (u,G,A,L,M,l,visit):
 
 if __name__=="__main__":
    
-    G2=genGraph(mode="random")
+    G2=genGraph(mode="random",size=16)
     A=len(G2)//2
     printGraph(G2,A)
     M=hopcroft (G2,A)
