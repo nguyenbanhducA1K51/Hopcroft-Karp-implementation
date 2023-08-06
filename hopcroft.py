@@ -1,10 +1,7 @@
 import numpy  as np 
 from collections import deque
-import networkx as nx
-
-# import sys
-import math 
-
+import math
+from utils import genGraph, printGraph,printGraphWithMatching
 def hopcroft(G,A):
     M={}
     visit={}
@@ -80,8 +77,6 @@ def aug (u,G,A,L,M,l,visit):
     return False
 
 
-   
-
 
 if __name__=="__main__":
    
@@ -89,7 +84,7 @@ if __name__=="__main__":
     A=len(G2)//2
     printGraph(G2,A)
     M=hopcroft (G2,A)
-    print ("M",M)
+    printGraphWithMatching(G2,A,M)
     
 
 
